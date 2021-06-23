@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/PabRod/footprints/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/footprints/actions)
+[![codecov](https://codecov.io/gh/PabRod/footprints/graph/badge.svg)](https://codecov.io/gh/PabRod/footprints)
 [![codecov](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
