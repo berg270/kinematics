@@ -1,5 +1,27 @@
 # Kinematics-related functions
 
+#' Approximate derivative
+#'
+#' @param t Vector of times
+#' @param x Vector of values
+#'
+#' @return A vector (of the same size of t) representing the numerical derivative
+#' @seealso \code{\link{speed}, \link{accel}}
+#'
+approx_derivative <- function(t, x) {
+  # Turn data into approximating function...
+  x_fun <- splinefun(t, x)
+
+  # ... so numDeriv can be used to differentiate anywhere.
+  dxdt <- numDeriv::grad(x_fun, t)
+
+  # Why not use just a differences vector?
+  # Because this way we ensure that both the input and output vectors have the
+  # same size.
+
+  return(dxdt)
+}
+
 #' Return speeds
 #'
 #' @param t The times vector
@@ -9,18 +31,17 @@
 #' @return The speeds
 #' @export
 #'
-#' @seealso \code{\link{accel}}
+#' @seealso \code{\link{accel}, \link{approx_derivative}}
 #'
 speed <- function(t, x, y) {
-  # Turn data into function...
-  x_fun <- splinefun(t, x)
-  y_fun <- splinefun(t, y)
+  # Differentiate the positions...
+  vx <- approx_derivative(t, x)
+  vy <- approx_derivative(t, y)
 
-  # ... so numDeriv can be used to differentiate
-  vx <- numDeriv::grad(x_fun, t)
-  vy <- numDeriv::grad(y_fun, t)
-
+  # ... and return result as data frame
   speeds <- data.frame(vx, vy)
+
+  return(speeds)
 }
 
 #' Return accelerations
@@ -32,20 +53,20 @@ speed <- function(t, x, y) {
 #' @return The accelerations
 #' @export
 #'
-#' @seealso \code{\link{speed}}
+#' @seealso \code{\link{speed}, \link{approx_derivative}}
 #'
 accel <- function(t, x, y) {
   # First get speeds...
   speeds <- speed(t, x, y)
 
-  # ... and then differentiate again, as in previous function
-  vx_fun <- splinefun(t, speeds$vx)
-  vy_fun <- splinefun(t, speeds$vy)
+  # ... and then differentiate again
+  ax <- approx_derivative(t, speeds$vx)
+  ay <- approx_derivative(t, speeds$vy)
 
-  ax <- numDeriv::grad(vx_fun, t)
-  ay <- numDeriv::grad(vy_fun, t)
-
+  # Return result as data frame
   accels <- data.frame(ax, ay)
+
+  return(accels)
 }
 
 #' Return curvatures
@@ -69,7 +90,9 @@ curvature <- function(t, x, y) {
   cross_prod <- speeds$vx*accels$ay - speeds$vy*accels$ax
 
   # Apply the definition of curvature
-  curv <- abs(cross_prod)/abs(aspeed^3)
+  curv <- abs(cross_prod) / abs(aspeed^3)
+
+  return(curv)
 }
 
 #' Return curvature radius
@@ -87,4 +110,6 @@ curvature_radius <- function(t, x, y) {
   # The curvature radius is just the inverse of the local curvature
   curvatures <- curvature(t, x, y)
   curv_radius <- 1 / curvatures
+
+  return(curv_radius)
 }

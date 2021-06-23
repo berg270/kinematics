@@ -20,5 +20,5 @@ The accelerations
 Return accelerations
 }
 \seealso{
-\code{\link{speed}}
+\code{\link{speed}, \link{approx_derivative}}
 }
