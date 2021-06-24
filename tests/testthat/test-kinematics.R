@@ -1,5 +1,21 @@
 context('Kinematics')
 
+## Auxiliary functions
+
+#' Expect equal for a constant and a vector
+#'
+#' Passes if and only if all the elements in the vector equal the constant
+#'
+#' @param constant A constant
+#' @param vector A vector
+#' @param ... Optional parameters for expect_equal
+#'
+#' @return Nothing
+#'
+expect_equal_constvect <- function(constant, vector, ...) {
+  expect_equal(rep(constant, length(vector)), vector, ...)
+}
+
 test_that('Speed',
           {
             # Generate movement with uniform speed (https://en.wikipedia.org/wiki/Acceleration#Uniform_acceleration)
@@ -15,8 +31,8 @@ test_that('Speed',
             vs_estimated <- speed(t, x, y)
 
             # Check that the estimates are correct
-            expect_equal(max(abs(vs_estimated$vx - v_expected[1])), 0.0)
-            expect_equal(max(abs(vs_estimated$vy - v_expected[2])), 0.0)
+            expect_equal_constvect(v_expected[1], vs_estimated$vx)
+            expect_equal_constvect(v_expected[2], vs_estimated$vy)
           }
 )
 
@@ -37,8 +53,8 @@ test_that('Acceleration',
             as_estimated <- accel(t, x, y)
 
             # Check that the estimates are correct
-            expect_equal(max(abs(as_estimated$ax - a_expected[1])), 0.0)
-            expect_equal(max(abs(as_estimated$ay - a_expected[2])), 0.0)
+            expect_equal_constvect(a_expected[1], as_estimated$ax)
+            expect_equal_constvect(a_expected[2], as_estimated$ay)
 
             # The speeds should not be constant
             expect_true(max(abs(vs_estimated$vx - v_0[1])) > 0.0)
@@ -58,8 +74,8 @@ test_that('Curvature (circle)',
             curvs_estimated <- curvature_radius(t, x, y)
 
             # Check that the estimates are correct
-            tol <- 0.01
-            expect_true(max(abs(curvs_estimated - R_expected)) < tol)
+            tol <- 1e-3
+            expect_equal_constvect(R_expected, curvs_estimated, tolerance = tol)
           }
 )
 
@@ -80,7 +96,7 @@ test_that('Curvature (ellipse)',
             curvs_estimated <- curvature_radius(t, x, y)
 
             # Check that the estimates are correct
-            tol <- 1e-2
-            expect_true(max(abs(curvs_estimated - R_expected)) < tol)
+            tol <- 1e-3
+            expect_equal(R_expected, curvs_estimated, tolerance = tol)
           }
 )
