@@ -80,3 +80,26 @@ test_that('Curvature (ellipse)',
             expect_equal(R_expected, curvs_estimated, tolerance = tol)
           }
 )
+
+test_that('Displacement',
+          {
+            # Generate movement with uniform speed
+            r_0 <- c(0, 1) # Initial positions
+            v_0 <- c(1.2, 0.8) # Initial (and constant) speed
+            t <- seq(0, 1, by=0.05)
+
+            mov <- uniformly_accelerated_mov(t, r_0, v_0)
+
+            # Estimate the displacements from the generated data
+            disps <- displacement(mov$x, mov$y)
+
+            # Check that the first row contains only NAs
+            # There, the displacements don't make any sense (displacement
+            # between when and when?)
+            expect_nas(disps[1, ], "Displacement shouldn't be defined for the first row")
+
+            # Check that the remaining rows contain correct estimates
+            expect_equal_constvect(0.05 * v_0[1], disps[-1, ]$disp_x)
+            expect_equal_constvect(0.05 * v_0[2], disps[-1, ]$disp_y)
+          }
+)

@@ -32,42 +32,34 @@ append_dynamics <- function(data_loc, append.displacement = TRUE) {
   if(append.displacement) {
     data <- append_displacement(data)
   }
-  # Why would you NOT want this to happen? For instance, at resampling. In such a
-  # case it is smarter to set append.displacement to FALSE, drop the displacements,
-  # and recalculate them with append_displacement alone with the new times
+  # Why would you NOT want this to happen? For instance, at subsampling. In such a
+  # case it is smarter to set append.displacement to FALSE, and recalculate them
+  # manually with append_displacement alone
 
   return(data)
 }
 
 #' Return a dataframe with information about the time-to-time displacements
 #'
+#' The displacement is a bit more complicated than other dynamical variables,
+#' as it depends on the sampling frequency. If you are subsampling, always re-run
+#' append_displacement after subsampling.
+#'
 #' @param data A dataframe with basic dynamics (typically the output of append_dynamics)
 #'
-#' @return A data frame including al the dynamical information, including displacements
+#' @return A data frame including all the dynamical information, including displacements
 #' @export
 #'
 #' @seealso \code{\link{append_dynamics}, \link{speed}}
 #'
 append_displacement <- function(data) {
-  # The displacement is a bit more complicated than other dynamical variables, as it requires knowing the time differences
-  # and thus is not rigorously an instantaneous measure.
-
-  # The speeds are required to calculate the displacements. Here we check if this
-  # information is already available ...
-  speeds_available <- all(c('vx', 'vy', 'aspeed') %in% colnames(data))
-  # ... and if it is not, stop and raise a warning
-  if(!speeds_available) stop("The provided dataset doesn't contain speeds. Please run append_dynamics first")
-
-  # The time differences are extracted here
-  dts <- c(0, diff(data$time)) # The zero ensures dts and data have the same length
-
   # Extract the displacements
-  disp_x <- dts * data$vx
-  disp_y <- dts * data$vy
-  adisp <- dts * data$aspeed
+  disps <- displacement(data$x, data$y)
 
   # Append them to the final result
-  data <- cbind(data, data.frame(disp_x, disp_y, adisp))
+  data <- cbind(data, disps)
+
+  return(data)
 }
 
 #' Returns a data frame with extra columns with polar coordinates

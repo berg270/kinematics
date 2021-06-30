@@ -14,6 +14,17 @@ expect_equal_constvect <- function(constant, vector, ...) {
   expect_equal(rep(constant, length(vector)), vector, ...)
 }
 
+#' Expect NAs vector
+#'
+#' @param obj An input
+#' @param ... Optional parameters for expect_true
+#'
+#' @return Nothing
+#'
+expect_nas <- function(obj, ...) {
+  expect_true(all(is.na(obj)), ...)
+}
+
 #' 2D uniformly accelerated movement
 #'
 #' Generates a 2D accelerated movement time series from its analytic expression

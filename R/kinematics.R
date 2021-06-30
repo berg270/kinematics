@@ -113,3 +113,22 @@ curvature_radius <- function(t, x, y) {
 
   return(curv_radius)
 }
+
+#' Return displacements
+#'
+#' @param x The x positions
+#' @param y The y positions
+#'
+#' @return The displacements between a position and its previous
+#' @export
+displacement <- function(x, y) {
+  # Extract the displacements
+  disp_x <- c(NA, diff(x)) # The NA ensures that displacements have the ...
+  disp_y <- c(NA, diff(y)) # ... same length as the data
+  adisp <- sqrt(disp_x^2 + disp_y^2)
+
+  # Append them to the final result
+  disps <- data.frame(disp_x, disp_y, adisp)
+
+  return(disps)
+}

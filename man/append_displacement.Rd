@@ -10,11 +10,13 @@ append_displacement(data)
 \item{data}{A dataframe with basic dynamics (typically the output of append_dynamics)}
 }
 \value{
-A data frame including al the dynamical information, including displacements
+A data frame including all the dynamical information, including displacements
 }
 \description{
-Return a dataframe with information about the time-to-time displacements
+The displacement is a bit more complicated than other dynamical variables,
+as it depends on the sampling frequency. If you are subsampling, always re-run
+append_displacement after subsampling.
 }
 \seealso{
-\code{\link{append_dynamics}, \link{speed}, \link{accel}}
+\code{\link{append_dynamics}, \link{speed}}
 }
