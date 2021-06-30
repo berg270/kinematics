@@ -10,7 +10,7 @@
 #'
 approx_derivative <- function(t, x) {
   # Turn data into approximating function...
-  x_fun <- splinefun(t, x)
+  x_fun <- stats::splinefun(t, x)
 
   # ... so numDeriv can be used to differentiate anywhere.
   dxdt <- numDeriv::grad(x_fun, t)

@@ -73,10 +73,13 @@ append_polar_coordinates <- function(data_loc) {
 
   # Load data on arenas
   # Load coordinates of gammarus or snail protocol
-  arenas <- read.csv(paste('data/arenas_', data_loc$test_species[1], '.csv', sep = ''))
+  arenas <- utils::read.csv(paste('data/arenas_', data_loc$test_species[1], '.csv', sep = ''))
   # Convert scale
   scale_value <- 0.46 # This value is extracted from the protocol
   arenas[2:5] <- apply(arenas[2:5], 2, function(x) x*scale_value)
+
+  # Auxiliary function
+  is_even <- function(x) return(x %% 2 == 0)
   # Combination of cosm and ind determines absolute position on board
   data_loc$ind_abd <- ifelse(is_even(data_loc$cosm_nr[[1]]), data_loc$ind+10, data_loc$ind)
   # Merge with other data

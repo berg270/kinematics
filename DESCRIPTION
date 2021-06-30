@@ -13,6 +13,7 @@ RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Suggests: testthat,
           knitr,
+          markdown,
           rmarkdown,
           readr,
           dplyr,
@@ -29,5 +30,7 @@ Suggests: testthat,
           gtable,
           ggExtra,
           bookdown,
-          magrittr
-Imports: numDeriv
+          magrittr,
+          utils
+Imports: numDeriv,
+         stats
