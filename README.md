@@ -3,7 +3,7 @@
 [![codecov](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Footprints <img src="vignettes/img/logo.png" width="120" align="right" />
+# Footprints <img src="inst/img/logo.png" width="120" align="right" />
 Reading and analyzing macroinvertebrate trajectories
 
 ## Getting started
