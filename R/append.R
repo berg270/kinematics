@@ -19,7 +19,7 @@ append_dynamics <- function(data_loc, append.displacement = TRUE) {
   speeds <- speed(data_loc$time, data_loc$x, data_loc$y)
   accels <- accel(data_loc$time, data_loc$x, data_loc$y)
 
-  # Absolute dynamical data
+  # Scalar dynamical data
   aspeed <- sqrt(speeds$vx^2 + speeds$vy^2)
   aaccel <- sqrt(accels$ax^2 + accels$ay^2)
   curv <- curvature(data_loc$time, data_loc$x, data_loc$y)
@@ -46,11 +46,17 @@ append_dynamics <- function(data_loc, append.displacement = TRUE) {
 #' @return A data frame including al the dynamical information, including displacements
 #' @export
 #'
-#' @seealso \code{\link{append_dynamics}, \link{speed}, \link{accel}}
+#' @seealso \code{\link{append_dynamics}, \link{speed}}
 #'
 append_displacement <- function(data) {
   # The displacement is a bit more complicated than other dynamical variables, as it requires knowing the time differences
   # and thus is not rigorously an instantaneous measure.
+
+  # The speeds are required to calculate the displacements. Here we check if this
+  # information is already available ...
+  speeds_available <- all(c('vx', 'vy', 'aspeed') %in% colnames(data))
+  # ... and if it is not, stop and raise a warning
+  if(!speeds_available) stop("The provided dataset doesn't contain speeds. Please run append_dynamics first")
 
   # The time differences are extracted here
   dts <- c(0, diff(data$time)) # The zero ensures dts and data have the same length

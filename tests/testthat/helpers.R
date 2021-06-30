@@ -30,5 +30,5 @@ uniformly_accelerated_mov <- function(t, r_0, v_0, a_0 = c(0, 0)) {
   x <- r_0[1] + v_0[1] * t + a_0[1] / 2 * t^2
   y <- r_0[2] + v_0[2] * t + a_0[2] / 2 * t^2
 
-  return(data.frame(x, y))
+  return(data.frame(time = t, x, y))
 }
