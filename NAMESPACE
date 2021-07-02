@@ -3,7 +3,6 @@
 export(accel)
 export(append_displacement)
 export(append_dynamics)
-export(append_polar_coordinates)
 export(curvature)
 export(curvature_radius)
 export(displacement)
