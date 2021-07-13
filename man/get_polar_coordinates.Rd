@@ -14,7 +14,7 @@ get_polar_coordinates(x, y, origin = c(0, 0))
 \item{origin}{(Default = c(0, 0)) Position of the origin of coordinates}
 }
 \value{
-
+Data frame with radius (r) and angle vectors (th)
 }
 \description{
 Get polar coordinates

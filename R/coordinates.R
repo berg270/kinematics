@@ -4,7 +4,7 @@
 #' @param y Vector if y coordinates
 #' @param origin (Default = c(0, 0)) Position of the origin of coordinates
 #'
-#' @return
+#' @return Data frame with radius (r) and angle vectors (th)
 #' @export
 #'
 get_polar_coordinates <- function(x, y, origin = c(0, 0)) {

@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Footprints <img src="inst/img/logo.png" width="120" align="right" />
-Reading and analyzing macroinvertebrate trajectories
+Reading and analyzing macroinvertebrates' trajectories
 
 ## Getting started
 
@@ -14,13 +14,11 @@ This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio
 ### Installing
 
 #### Latest stable version
-Type `devtools::install_github("PabRod/footprints", ref = "master")` in your `R` command console.
-
-#### Latest version
-Type `devtools::install_github("PabRod/footprints", ref = "develop")` in your `R` command console.
+Type `devtools::install_github("PabRod/footprints")` in your `R` command console.
 
 ### Running the tests
-The integrity of this package can be checked by running the battery of tests available at `./tests`.
+The integrity of this package can be checked by running `devtools::test()`. 
+The battery of tests available is stored at `./tests/testthat`.
 
 ## Authors
 - [Pablo Rodríguez-Sánchez](https://pabrod.github.io)
