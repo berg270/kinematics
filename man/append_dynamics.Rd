@@ -4,10 +4,10 @@
 \alias{append_dynamics}
 \title{Return a data frame with extra columns with dynamical information}
 \usage{
-append_dynamics(data_loc, append.displacement = TRUE)
+append_dynamics(data, append.displacement = TRUE)
 }
 \arguments{
-\item{data_loc}{The clean data from a given location}
+\item{data}{A dataframe containing t, x and y}
 
 \item{append.displacement}{(Optional) Set it to FALSE to not calculate displacements. Useful if the data is going to be resampled}
 }

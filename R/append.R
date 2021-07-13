@@ -6,7 +6,7 @@
 
 #' Return a data frame with extra columns with dynamical information
 #'
-#' @param data_loc The clean data from a given location
+#' @param data A dataframe containing t, x and y
 #' @param append.displacement (Optional) Set it to FALSE to not calculate displacements. Useful if the data is going to be resampled
 #'
 #' @return A data frame including instantaneous dynamical variables, such as speed and acceleration
@@ -14,19 +14,19 @@
 #'
 #' @seealso \code{\link{speed}, \link{accel}, \link{append_displacement}}
 #'
-append_dynamics <- function(data_loc, append.displacement = TRUE) {
+append_dynamics <- function(data, append.displacement = TRUE) {
   # Directional dynamical data
-  speeds <- speed(data_loc$time, data_loc$x, data_loc$y)
-  accels <- accel(data_loc$time, data_loc$x, data_loc$y)
+  speeds <- speed(data$t, data$x, data$y)
+  accels <- accel(data$t, data$x, data$y)
 
   # Scalar dynamical data
   aspeed <- sqrt(speeds$vx^2 + speeds$vy^2)
   aaccel <- sqrt(accels$ax^2 + accels$ay^2)
-  curv <- curvature(data_loc$time, data_loc$x, data_loc$y)
-  curv_radius <- curvature_radius(data_loc$time, data_loc$x, data_loc$y)
+  curv <- curvature(data$t, data$x, data$y)
+  curv_radius <- curvature_radius(data$t, data$x, data$y)
 
   # Paste everything together
-  data <- cbind(data_loc, speeds, aspeed, accels, aaccel, curv, curv_radius)
+  data <- cbind(data, speeds, aspeed, accels, aaccel, curv, curv_radius)
 
   # Add displacements if required
   if(append.displacement) {
@@ -45,7 +45,7 @@ append_dynamics <- function(data_loc, append.displacement = TRUE) {
 #' as it depends on the sampling frequency. If you are subsampling, always re-run
 #' append_displacement after subsampling.
 #'
-#' @param data A dataframe with basic dynamics (typically the output of append_dynamics)
+#' @param data A dataframe containing t, x and y
 #'
 #' @return A data frame including all the dynamical information, including displacements
 #' @export

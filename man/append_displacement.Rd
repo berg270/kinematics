@@ -7,7 +7,7 @@
 append_displacement(data)
 }
 \arguments{
-\item{data}{A dataframe with basic dynamics (typically the output of append_dynamics)}
+\item{data}{A dataframe containing t, x and y}
 }
 \value{
 A data frame including all the dynamical information, including displacements
