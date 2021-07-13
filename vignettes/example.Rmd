@@ -1,0 +1,72 @@
+---
+title: "Example of usage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Purpose
+
+This package was born as a collaboration between a physicist and an experimental biologist.
+We faced a problem: our department had bought a fancy tracker for registering the positions of macroinvertebrates on a set of Petri dishes.
+The device came with its own software, but the output happened to be quite obscure and unmanageable.
+
+We decided to write our own analysis software for these sampled trajectories.
+It works with a main input: a data frame representing the sampled movement on a two-dimensional surface.
+It returns different properties of that movement, such as the instantaneous speeds, accelerations or curvatures.
+
+## Installation
+
+In order to use the package, we have to install it.
+In case you haven't done it already, the easiest way to install it is via the `devtools` official CRAN package.
+
+```r
+devtools::install_github('PabRod/footprints')
+```
+
+After installing, we have to attach the package.
+
+```{r setup}
+library(footprints)
+```
+
+And we are ready to go!
+
+## Usage
+
+### Storing sampled movement
+
+This is a package for studying movement.
+So we need a way of coding movement into an object.
+This is R, so you guessed it! We'll code movement in the form of a data frame.
+Particularly, our data frames representing movement will have three columns:
+
+- The t column: representing time
+- The x column: representing the horizontal position at the time t
+- The y column: representing the vertical position at the time t
+
+An example could be:
+
+```{r}
+mov <- data.frame(t = c(0, 1, 2, 3, 4), 
+                  x = c(0, 1, 2, 3, 4), 
+                  y = c(0, 1, 4, 9, 16))
+```
+
+that represents five steps of what seems to be a parabolic movement:
+
+```{r}
+plot(mov$x, mov$y, xlab = 'x', ylab = 'y')
+```
+
+More interesting example will come from **sampled** data frames, such as the ones that our device produces.
+In that case, we'll have to load the data from an external source, and transform it to the (t, x, y) format.
+

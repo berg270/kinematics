@@ -15,7 +15,9 @@ VignetteBuilder: knitr
 Suggests: 
     testthat,
     knitr,
-    utils
+    utils,
+    markdown,
+    rmarkdown
 Imports: 
     numDeriv,
     stats

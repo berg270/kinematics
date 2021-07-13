@@ -5,3 +5,4 @@
 ..Rcheck
 footprints.Rcheck
 footprints_*.tar.gz
+inst/doc
