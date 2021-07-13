@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+..Rcheck
+footprints.Rcheck
+footprints_*.tar.gz

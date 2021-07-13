@@ -1,18 +1,21 @@
 Package: footprints
 Type: Package
-Title: footprints
-Version: 0.1.0
-Author: Pablo Rodriguez-Sanchez (https://pabrod.github.io) and Sanne J. P. van den Berg (https://www.linkedin.com/in/sanne-van-den-berg-23253b6b)
+Title: Studying Sampled Trajectories
+Version: 1.0.0
+Author: Pablo Rodriguez-Sanchez (https://pabrod.github.io) and Sanne J. P. van den Berg (https://www.wur.nl/en/Persons/Sanne-dr.-SJP-Sanne-van-den-Berg.htm)
 Maintainer: Pablo Rodriguez-Sanchez <pablo.rodriguez.sanchez@gmail.com>
-Description: Reads and analyzes the data from a macroinvertebrate position tracker.
-    Use four spaces when indenting paragraphs within the Description.
+Description: Allows analyzing time series representing two-dimensional movements.
+    It accepts a data frame with a time (t), horizontal (x) and vertical (y) coordinate as columns,
+    and returns several dynamical properties such as speed, acceleration or curvature.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-Suggests: testthat,
-          knitr,
-          utils
-Imports: numDeriv,
-         stats
+Suggests: 
+    testthat,
+    knitr,
+    utils
+Imports: 
+    numDeriv,
+    stats
