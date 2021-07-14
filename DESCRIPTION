@@ -22,3 +22,5 @@ Suggests:
 Imports: 
     numDeriv,
     stats
+Depends: 
+    R (>= 2.10)

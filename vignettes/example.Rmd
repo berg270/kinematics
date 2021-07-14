@@ -150,7 +150,7 @@ mov <- data.frame(t = ts,
 The data looks like this:
 
 ```{r spiral-plot}
-plot(mov$x, mov$y, xlab = "x", ylab = "y")
+plot(mov$x, mov$y, xlab = "x", ylab = "y", asp = 1)
 ```
 
 And repeating the analysis shown in the previous example, we can significantly enrich the features we can see on the data.
@@ -164,7 +164,34 @@ mov_analyzed <- append_dynamics(mov)
 ggplot(data = mov_analyzed, 
        mapping = aes(x = x, y = y, col = curv_radius, size = aspeed)) +
        geom_point(alpha = 0.5) +
+       coord_fixed() +
        scale_color_gradient(low="blue", high="red")
 ```
 
+### Sampled curve
 
+Much more interesting examples will come from actual **sampled** data, such as the ones that our device produces.
+In that case, we'll have to load the data from an external source, and transform it to the (t, x, y) format.
+Sometimes, we'll also need to clean the data a bit.
+
+For pedagogical purposes, we include an example data set in this package.
+
+This is how our experimental data looks after importing and cleaning:
+
+```{r load-data}
+mov <- footprints::example_mov
+plot(mov$x, mov$y, xlab = "x", ylab = "y", asp = 1)
+
+```
+
+And this is an example of how can it look after analyzing:
+
+```{r analyze-data}
+mov_analyzed <- append_dynamics(mov)
+
+ggplot(data = mov_analyzed, 
+       mapping = aes(x = x, y = y, col = aaccel, size = aspeed)) +
+       geom_point(alpha = 0.1) +
+       coord_fixed() +
+       scale_color_gradient(low="blue", high="red")
+```
