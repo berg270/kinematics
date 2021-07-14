@@ -12,8 +12,6 @@ Reading and analyzing macroinvertebrates' trajectories
 This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://www.rstudio.com/) is recommended.
 
 ### Installing
-
-#### Latest stable version
 Type `devtools::install_github("PabRod/footprints")` in your `R` command console.
 
 ### Running the tests

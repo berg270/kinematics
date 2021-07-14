@@ -1,5 +1,5 @@
 ---
-title: "Example of usage"
+title: "Basic usage"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example}
@@ -9,6 +9,7 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  knitr::opts_chunk$set(fig.width=6, fig.height=5), 
   collapse = TRUE,
   comment = "#>"
 )
@@ -17,22 +18,24 @@ knitr::opts_chunk$set(
 
 This package was born as a collaboration between a physicist and an experimental biologist.
 We faced a problem: our department had bought a fancy tracker for registering the positions of macroinvertebrates on a set of Petri dishes.
-The device came with its own software, but the output happened to be quite obscure and unmanageable.
 
-We decided to write our own analysis software for these sampled trajectories.
-It works with a main input: a data frame representing the sampled movement on a two-dimensional surface.
-It returns different properties of that movement, such as the instantaneous speeds, accelerations or curvatures.
+Long story short, the device captured several images per second, and managed to identify the horizontal and vertical position of the organism under study.
+The output produced by the software contained time series with values of the sampling times $t$, and the corresponding two-dimensional positions $(x, y)$.
+Unfortunately, this output also contained some obscure and difficult to manage processed data.
+
+We decided to write our own analysis software for these sampled trajectories, using only the fundamental infromation about movement (that is: $t$, $x$ and $y$).
+Our packages returns different properties of that movement, such as the instantaneous speeds, accelerations or curvatures.
 
 ## Installation
 
 In order to use the package, we have to install it.
-In case you haven't done it already, the easiest way to install it is via the `devtools` official CRAN package.
+The easiest way to install it is via the [`devtools`](https://devtools.r-lib.org/) official CRAN package.
 
 ```r
-devtools::install_github('PabRod/footprints')
+devtools::install_github("PabRod/footprints")
 ```
 
-After installing, we have to attach the package.
+After installing, we have to attach the package as usual:
 
 ```{r setup}
 library(footprints)
@@ -40,7 +43,7 @@ library(footprints)
 
 And we are ready to go!
 
-## Usage
+## Basic usage
 
 ### Storing sampled movement
 
@@ -49,13 +52,13 @@ So we need a way of coding movement into an object.
 This is R, so you guessed it! We'll code movement in the form of a data frame.
 Particularly, our data frames representing movement will have three columns:
 
-- The t column: representing time
-- The x column: representing the horizontal position at the time t
-- The y column: representing the vertical position at the time t
+- The $t$ column: representing time
+- The $x$ column: representing the horizontal position at the time $t$
+- The $y$ column: representing the vertical position at the time $t$
 
-An example could be:
+A minimal example could be:
 
-```{r}
+```{r parabolic-create}
 mov <- data.frame(t = c(0, 1, 2, 3, 4), 
                   x = c(0, 1, 2, 3, 4), 
                   y = c(0, 1, 4, 9, 16))
@@ -63,10 +66,105 @@ mov <- data.frame(t = c(0, 1, 2, 3, 4),
 
 that represents five steps of what seems to be a parabolic movement:
 
-```{r}
-plot(mov$x, mov$y, xlab = 'x', ylab = 'y')
+```{r parabolic-plot}
+plot(mov$x, mov$y, xlab = "x", ylab = "y")
 ```
 
-More interesting example will come from **sampled** data frames, such as the ones that our device produces.
-In that case, we'll have to load the data from an external source, and transform it to the (t, x, y) format.
+Notice that the insides of the data frame look like below:
+
+```{r parabolic-display, echo=FALSE}
+mov
+```
+
+### Extracting movement properties
+
+The function `append_dynamics` is a way of extracting as much movement properties as possible.
+If we apply it to `mov`, the resulting data frame contains much more columns:
+
+```{r append}
+mov_analyzed <- append_dynamics(mov)
+```
+
+```{r display, echo=FALSE}
+mov_analyzed
+```
+
+These new columns are:
+
+- `vx`, `vy` and `aspeed`: horizontal, vertical and absolute speed.
+- `ax`, `ay`, and `aaccel`: horizontal, vertical and absolute acceleration.
+- `curv` and `curv_radius`: curvature and curvature radius.
+- `disp_x`, `disp_y` and `adisp`: horizontal, vertical and absolute displacement (since previous time step).
+
+#### A note about units
+
+The units of $x$ and $y$ are expected to be the same (say, meters).
+All the new columns derive their units from thse of $t$ and $x$ that is:
+
+- Speeds' units are: $x$ unit divided by $t$ unit.
+- Acceleration's units are: $x$ unit divided by $t$ unit squared.
+- Curvature unit is $1$ divided by $x$ unit.
+- Curvature radius' unit is the same as $x$.
+- Displacements' units are the same as $x$.
+
+The new columns are ready to be analyzed.
+For example, we can visualize curvature and absolute speed using `ggplot2`:
+
+```{r ggplot}
+library(ggplot2)
+ggplot(data = mov_analyzed, 
+       mapping = aes(x = x, y = y, col = curv_radius, size = aspeed)) +
+       geom_point() +
+       scale_color_gradient(low="blue", high="red")
+```
+
+## More realistic examples
+
+### Parametric equation of movement
+
+A common way of describing movement in physics is by assigning a function of time to $x$ and $y
+For instance, an Archimedean spiral is known to follow the equations below:
+
+$$
+x(t) = t \cdot \cos(t)
+\\
+y(t) = t \cdot \sin(t)
+$$
+
+We can encode it, and sample at intervals of 0.05 units of time, using the snippet below:
+
+```{r spiral create}
+# Generate the times
+ts <- seq(0, 10, by = 0.05)
+
+# Calculate the positions using a function
+xs <- ts * cos(ts)
+ys <- ts * sin(ts)
+
+# Store as data frame
+mov <- data.frame(t = ts, 
+                  x = xs, 
+                  y = ys)
+```
+
+The data looks like this:
+
+```{r spiral-plot}
+plot(mov$x, mov$y, xlab = "x", ylab = "y")
+```
+
+And repeating the analysis shown in the previous example, we can significantly enrich the features we can see on the data.
+For instance, once again, we use color to plot curvature radii and size to plot absolute speed.
+
+```{r spiral-analyzed}
+mov_analyzed <- append_dynamics(mov)
+```
+
+```{r spiral-ggplot}
+ggplot(data = mov_analyzed, 
+       mapping = aes(x = x, y = y, col = curv_radius, size = aspeed)) +
+       geom_point(alpha = 0.5) +
+       scale_color_gradient(low="blue", high="red")
+```
+
 

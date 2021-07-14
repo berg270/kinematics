@@ -17,7 +17,8 @@ Suggests:
     knitr,
     utils,
     markdown,
-    rmarkdown
+    rmarkdown,
+    ggplot2
 Imports: 
     numDeriv,
     stats
