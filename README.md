@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/PabRod/kinematics/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/kinematics/actions)
+[![Build Status](https://github.com/PabRod/kinematics/workflows/R-CMD-check/badge.svg?branch=main)](https://github.com/PabRod/kinematics/actions)
 [![codecov](https://codecov.io/gh/PabRod/kinematics/graph/badge.svg)](https://codecov.io/gh/PabRod/kinematics)
 [![codecov](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
