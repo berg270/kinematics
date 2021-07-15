@@ -1,4 +1,4 @@
 library(testthat)
-library(footprints)
+library(kinematics)
 
-test_check("footprints")
+test_check("kinematics")

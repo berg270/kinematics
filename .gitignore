@@ -3,6 +3,6 @@
 .RData
 .Ruserdata
 ..Rcheck
-footprints.Rcheck
-footprints_*.tar.gz
+kinematics.Rcheck
+kinematics_*.tar.gz
 inst/doc

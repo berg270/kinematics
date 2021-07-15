@@ -41,14 +41,14 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="982"
+     inkscape:window-height="1050"
      id="namedview33"
      showgrid="false"
      inkscape:zoom="2.3177389"
-     inkscape:cx="81.329264"
+     inkscape:cx="-16.179562"
      inkscape:cy="26.103027"
      inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="Capa_1"
      inkscape:measure-start="20.7458,344.746"
@@ -297,7 +297,7 @@
        id="tspan931"
        x="69.702637"
        y="-6.576263"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Rockwell Condensed';-inkscape-font-specification:'Rockwell Condensed, ';fill:#008000">foot</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Rockwell Condensed';-inkscape-font-specification:'Rockwell Condensed, ';fill:#008000">kine</tspan></text>
   <image
      y="-14.575789"
      x="-73.99472"
@@ -324,15 +324,15 @@
      transform="rotate(88.928272)"
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:18.6667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#008000;fill-opacity:1;stroke:none"
-     x="47.580521"
-     y="-104.05317"
+     x="46.060482"
+     y="-103.54266"
      id="text12846"
      inkscape:export-filename="logo.png"
      inkscape:export-xdpi="299.26001"
      inkscape:export-ydpi="299.26001"><tspan
        sodipodi:role="line"
        id="tspan12844"
-       x="47.580521"
-       y="-104.05317"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Rockwell Condensed';-inkscape-font-specification:'Rockwell Condensed, ';fill:#008000">prints</tspan></text>
+       x="46.060482"
+       y="-103.54266"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Rockwell Condensed';-inkscape-font-specification:'Rockwell Condensed, ';fill:#008000">matics</tspan></text>
 </svg>

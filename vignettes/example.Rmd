@@ -36,13 +36,13 @@ In order to use the package, we have to install it.
 The easiest way to install it is via the [`devtools`](https://devtools.r-lib.org/) official CRAN package.
 
 ```r
-devtools::install_github("PabRod/footprints")
+devtools::install_github("PabRod/kinematics")
 ```
 
 After installing, we have to attach the package as usual:
 
 ```{r setup}
-library(footprints)
+library(kinematics)
 ```
 
 And we are ready to go!
@@ -197,7 +197,7 @@ The curve was traced by a macroinvertebrate called _Asella_ inside a Petri dish 
 This is how it looks after importing and cleaning:
 
 ```{r load-data}
-mov <- footprints::example_mov
+mov <- kinematics::example_mov
 plot(mov$x, mov$y, xlab = "x", ylab = "y", asp = 1)
 
 ```

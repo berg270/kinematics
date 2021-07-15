@@ -1,10 +1,10 @@
-[![Build Status](https://github.com/PabRod/footprints/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/footprints/actions)
-[![codecov](https://codecov.io/gh/PabRod/footprints/graph/badge.svg)](https://codecov.io/gh/PabRod/footprints)
+[![Build Status](https://github.com/PabRod/kinematics/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/kinematics/actions)
+[![codecov](https://codecov.io/gh/PabRod/kinematics/graph/badge.svg)](https://codecov.io/gh/PabRod/kinematics)
 [![codecov](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-# Footprints <img src="inst/img/logo.png" width="120" align="right" />
+# Kinematics <img src="inst/img/logo.png" width="120" align="right" />
 
 Allows analyzing time series representing two-dimensional movements.
 It accepts a data frame with a time (t), horizontal (x) and vertical (y) 
@@ -45,13 +45,13 @@ install it is via the [`devtools`](https://devtools.r-lib.org/) official
 CRAN package.
 
 ```r
-devtools::install_github("PabRod/footprints")
+devtools::install_github("PabRod/kinematics")
 ```
 
 After installing, we have to attach the package as usual:
 
 ```r
-library(footprints)
+library(kinematics)
 ```
 
 And we are ready to go!
@@ -243,7 +243,7 @@ package).
 This is how it looks after importing and cleaning:
 
 ```r
-mov <- footprints::example_mov
+mov <- kinematics::example_mov
 
 plot(mov$x, mov$y, xlab = "x", ylab = "y", asp = 1)
 ```
