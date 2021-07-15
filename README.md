@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/gh/PabRod/kinematics/graph/badge.svg)](https://codecov.io/gh/PabRod/kinematics)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5107804.svg)](https://doi.org/10.5281/zenodo.5107804)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 
 
 # Kinematics <img src="inst/img/logo.png" width="120" align="right" />
