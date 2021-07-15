@@ -1,6 +1,6 @@
 [![Build Status](https://github.com/PabRod/kinematics/workflows/R-CMD-check/badge.svg?branch=main)](https://github.com/PabRod/kinematics/actions)
 [![codecov](https://codecov.io/gh/PabRod/kinematics/graph/badge.svg)](https://codecov.io/gh/PabRod/kinematics)
-[![codecov](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5107804.svg)](https://doi.org/10.5281/zenodo.5107804)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -279,6 +279,20 @@ hist(mov_analyzed$aaccel,
 ```
 
 ![](inst/img/hist-data-1.png)
+
+## Citation
+
+Please use the information below to compose your citation of this software.
+
+```
+Pablo Rodríguez-Sánchez, & Sanne J.P. van den Berg.
+(2021, July 15). 
+PabRod/kinematics 
+Zenodo. 
+http://doi.org/10.5281/zenodo.5107804
+```
+
+Different citation formats can be automatically generated from [Zenodo](https://doi.org/10.5281/zenodo.5107804).
 
 ## Authors
 
