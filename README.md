@@ -107,7 +107,7 @@ Notice that the insides of the data frame look like below:
 
 where each row represents one “footprint”, that is, one snapshot of the
 movement. For instance, we see that at *t*=2, the position of the
-organism was (2,4).
+organism was (x, y) = (2,4).
 
 ### Extracting movement properties
 
