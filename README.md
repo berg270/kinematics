@@ -237,7 +237,7 @@ data a bit (for instance, removing NAs, artifacts, … you know [the
 drill](https://cengel.github.io/R-data-wrangling/)).
 
 For pedagogical purposes, we include an example data set in this
-package. The curve was traced by a macroinvertebrate called *Asella*
+package. The curve was traced by a macroinvertebrate called *Gammarus pulex*
 inside a Petri dish (no animals were harmed in the making of this
 package).
 
